@@ -17,18 +17,18 @@
       if (reloading === null) {
           sessionStorage.setItem('reloading', 'true');
           sessionStorage.setItem('num', 1);
-          sessionStorage.setItem('fade_dir', 'fade-out');
+          sessionStorage.setItem('fade_dir', 'stay');
       }
       var num = sessionStorage.getItem('num');
       var fade_dir = sessionStorage.getItem('fade_dir');
 
-      sessionStorage.setItem('num', fade_dir == 'fade-in' ? num : parseInt(num) + 1);
-      sessionStorage.setItem('fade_dir', fade_dir === 'fade-in' ? 'fade-out' : 'fade-in');
+      sessionStorage.setItem('num', fade_dir === 'fade-out' ? parseInt(num) + 1 : num);
+      sessionStorage.setItem('fade_dir', fade_dir === 'fade-in' ? 'stay' : (fade_dir === 'fade-out' ? 'fade-in' : 'fade-out'));
 
       document.getElementById('img_name').className = fade_dir;
       document.getElementById('img_name').src = 'static/Oreo-pictures/Oreo-' + String(num).padStart(4, '0') + '.jpg';
       // document.getElementById('page_title').textContent = String(num) + String(fade_dir);
-    }, 4000);
+    }, 3000);
   }
 </script>
 <style>
